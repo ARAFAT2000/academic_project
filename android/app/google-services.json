@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "420974247583",
+    "project_id": "academicproject-3d530",
+    "storage_bucket": "academicproject-3d530.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420974247583:android:c5a05cb32b9ec5912eacaa",
+        "android_client_info": {
+          "package_name": "com.example.academic_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAicZ2aPY4eEfhGkRCb43KcN_J7PzXlrXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
