@@ -1,11 +1,12 @@
+
 import 'package:flutter/material.dart';
 
-InputDecoration TextFieldInputDecoration(String label){
+InputDecoration ModifyTextField (String label, Widget icon){
   return InputDecoration(
-
-      hintText: label,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20)
-      )
+     hintText: label,
+    prefixIcon: icon,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10)
+    )
   );
 }
