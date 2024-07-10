@@ -1,12 +1,17 @@
 import 'package:academic_project/Constant/constant.dart';
+import 'package:academic_project/Model/product_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../Provider/favorite_provider.dart';
 
 
 class DetailsAppber extends StatelessWidget {
-  const DetailsAppber({super.key});
+  final Product product;
+  const DetailsAppber({super.key,required this.product});
 
   @override
   Widget build(BuildContext context) {
+    final provider = FavoriteProvider.of(context);
     return Padding(
         padding: EdgeInsets.only(left: 5,right: 5,top: 20),
     child: Row(
@@ -45,11 +50,17 @@ Navigator.pop(context);
               padding: EdgeInsets.all(15)
           ),
           onPressed: (){
-
+         provider.toggleFavorite(product);
           },
           icon: CircleAvatar(
               backgroundColor: Colors.white,
-              child: Icon(Icons.favorite_border)),
+              child: Icon(
+                  provider.isExist(product)?
+                  Icons.favorite:
+                  Icons.favorite_border,
+
+              color: Colors.black,
+              size: 20,)),
 
         ),
       ],

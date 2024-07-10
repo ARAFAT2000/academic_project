@@ -18,7 +18,7 @@ class _BottomPageState extends State<BottomPage> {
 
   List screen=[
     Scaffold(),
-    FavoriteScreen(),
+    Favorite(),
     HomeScreen(),
     CartScreen(),
     ProfileScreen()

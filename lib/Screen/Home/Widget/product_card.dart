@@ -1,20 +1,23 @@
 import 'package:academic_project/Constant/constant.dart';
+import 'package:academic_project/Model/product_model.dart';
+import 'package:academic_project/Provider/favorite_provider.dart';
 import 'package:academic_project/Screen/Details/details_screen.dart';
 import 'package:academic_project/utils/modify_text.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final products;
-  const ProductCard({super.key, required this.products});
+  final Product product;
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     final size= MediaQuery.of(context).size;
+    final provider= FavoriteProvider.of(context);
     return GestureDetector(
       onTap: (){
         Navigator.push(context,
             MaterialPageRoute(builder: (context)=>
-                DetailsScreen(product: products)));
+                DetailsScreen(product: product)));
       },
       child: Stack(
         children: [
@@ -33,8 +36,8 @@ class ProductCard extends StatelessWidget {
                 ),
                Center(
                    child: Hero(
-                     tag:products.image ,
-                     child: Image.asset(products.image,
+                     tag:product.image ,
+                     child: Image.asset(product.image,
                                        height: 110,
                        width: 110,
                        fit: BoxFit.cover,
@@ -46,7 +49,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
-                  child: ModifyText(text: products.title, size: 13),
+                  child: ModifyText(text: product.title, size: 13),
                 ),
                 SizedBox(
                   height: 10,
@@ -55,7 +58,7 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "\$${products.price}",
+                      "\$ ${product.price}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
@@ -64,12 +67,12 @@ class ProductCard extends StatelessWidget {
                     Row(
 
                       children: List.generate(
-                          products.colors.length, (index) {
+                          product.colors.length, (index) {
                          return Container(
                            height: 18,
                            width: 18,
                            decoration: BoxDecoration(
-                             color: products.colors[index],
+                             color: product.colors[index],
                              shape: BoxShape.circle
                            ),
                          );
@@ -80,6 +83,30 @@ class ProductCard extends StatelessWidget {
                 
               ],
             ),
+          ),
+          Positioned(
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: kprimaryColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(10)
+                    )
+                  ),
+                  child: GestureDetector(
+                    onTap: (){
+                      provider.toggleFavorite(product);
+                    },
+                      child: Icon(
+                        provider.isExist(product)?
+                            Icons.favorite:
+                        Icons.favorite_border,color: Colors.white,size: 22,)),
+                ),
+              )
           )
         ],
       ),

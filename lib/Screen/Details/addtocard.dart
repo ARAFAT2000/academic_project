@@ -1,4 +1,5 @@
 import 'package:academic_project/Model/product_model.dart';
+import 'package:academic_project/Provider/provider_cart_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Constant/constant.dart';
@@ -15,6 +16,7 @@ class _AddtoCartState extends State<AddtoCart> {
   @override
   Widget build(BuildContext context) {
     final size= MediaQuery.of(context).size;
+    final provider= CartProvider.of(context);
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
       child: Container(
@@ -38,7 +40,11 @@ class _AddtoCartState extends State<AddtoCart> {
                  children: [
                    IconButton(
                        onPressed: (){
-
+                     if(currentIndex !=1){
+                       setState(() {
+                         currentIndex--;
+                       });
+                     }
                    },
                        iconSize: 14,
                        icon: Icon(Icons.remove,
@@ -55,7 +61,9 @@ class _AddtoCartState extends State<AddtoCart> {
                    ),
                    IconButton(
                        onPressed: (){
-
+                         setState(() {
+                           currentIndex++;
+                         });
                        },
                        iconSize: 14,
                        icon: Icon(Icons.add,
@@ -67,7 +75,11 @@ class _AddtoCartState extends State<AddtoCart> {
 
 
               GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  provider.toggleFavorite(widget.product);
+                const  snakbar= SnackBar(content: Text('Succesfully add'));
+                  ScaffoldMessenger.of(context).showSnackBar(snakbar);
+                },
                 child: Container(
                   height: 55,
 

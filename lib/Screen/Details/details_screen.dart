@@ -32,7 +32,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                padding: const EdgeInsets.only(left: 1,right: 5,top: 20),
                child: Column(
                  children: [
-                   DetailsAppber(),
+                   DetailsAppber(product: widget.product,),
                    DetailsImageSlider(
                        onChanges: (index){
                      setState(() {

@@ -12,8 +12,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Profile Screen'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset('images/section.png')
+          ],
+        ),
       ),
     );
   }
